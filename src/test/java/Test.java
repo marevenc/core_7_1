@@ -5,39 +5,37 @@ import org.junit.jupiter.api.Assertions;
 public class Test {
 
     @org.junit.jupiter.api.Test
-    public void Test_Search(){
-        Employee employee1 = new Employee("Ivanov", "Ivan", 23, "m", "bachelor", "engineer", "34");
-        Employee employee2 = new Employee("Petrov", "Igor", 54, "m", "master", "analyst", "21");
-        Employee employee3 = new Employee("Romashkova", "Nina", 63, "f", "master", "secretary", "5");
+    public void testGetAllContacts(){
+        Contact contact1 = new Contact("Николаев Олег", "4539877");
+        Contact contact2 = new Contact("Денисова Кира", "3456622");
+        Contact contact3 = new Contact("Иванов Петр", "3234433");
 
-        List<Employee> employees = new ArrayList<>();
-        employees.add(employee1);
-        employees.add(employee2);
-        employees.add(employee3);
+        List<Contact> expected = Contact.getAllContacts();
 
-        int expected = Main.searchBySurname("Romashkova", "Nina", employees);
-        int actual = 2;
+        List<Contact> actual = new ArrayList<>();
+
+        actual.add(contact1);
+        actual.add(contact2);
+        actual.add(contact3);
 
         Assertions.assertEquals(expected, actual);
     }
 
     @org.junit.jupiter.api.Test
-    public  void Test_delete(){
-        Employee employee1 = new Employee("Ivanov", "Ivan", 23, "m", "bachelor", "engineer", "34");
-        Employee employee2 = new Employee("Petrov", "Igor", 54, "m", "master", "analyst", "21");
-        Employee employee3 = new Employee("Romashkova", "Nina", 63, "f", "master", "secretary", "5");
-
-        List<Employee> actual = new ArrayList<>();
-        actual.add(employee1);
-        actual.add(employee3);
-
-        List<Employee> expected = new ArrayList<>();
-        expected.add(employee1);
-        expected.add(employee2);
-        expected.add(employee3);
-        Main.deleteEmployee(expected, 1);
-        Assertions.assertEquals(expected, actual);
+    public void testGetAllContactsNotNull(){
+        List<Contact> expected = Contact.getAllContacts();
+        Assertions.assertNotNull(expected);
     }
 
+    @org.junit.jupiter.api.Test
+    public void testNumberOfContacts(){
+        Contact contact1 = new Contact("Николаев Олег", "4539877");
+        Contact contact2 = new Contact("Денисова Кира", "3456622");
+        Contact contact3 = new Contact("Иванов Петр", "3234433");
 
+        int expected = Contact.numberOfContacts();
+        int actual = 3;
+
+        Assertions.assertEquals(expected, actual);
+    }
 }
