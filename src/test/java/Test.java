@@ -1,41 +1,57 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 import org.junit.jupiter.api.Assertions;
 
 public class Test {
 
     @org.junit.jupiter.api.Test
-    public void testGetAllContacts(){
-        Contact contact1 = new Contact("Николаев Олег", "4539877");
-        Contact contact2 = new Contact("Денисова Кира", "3456622");
-        Contact contact3 = new Contact("Иванов Петр", "3234433");
+    public void testHasContact(){
+        Contact contact1 = new Contact("Oleg", "4539877");
+        Contact contact2 = new Contact("Kira", "3456622");
+        Contact contact3 = new Contact("Pavel", "3234433");
 
-        List<Contact> expected = Contact.getAllContacts();
+        PhoneBook phoneBook = new PhoneBook();
 
-        List<Contact> actual = new ArrayList<>();
+        phoneBook.addContact(contact1);
+        phoneBook.addContact(contact2);
+        phoneBook.addContact(contact3);
 
-        actual.add(contact1);
-        actual.add(contact2);
-        actual.add(contact3);
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(phoneBook.hasContact(contact1), true);
     }
 
     @org.junit.jupiter.api.Test
-    public void testGetAllContactsNotNull(){
-        List<Contact> expected = Contact.getAllContacts();
-        Assertions.assertNotNull(expected);
+    public void testAddContacts(){
+        Contact contact1 = new Contact("Oleg", "4539877");
+        Contact contact2 = new Contact("Kira", "3456622");
+        Contact contact3 = new Contact("Pavel", "3234433");
+
+        PhoneBook phoneBook = new PhoneBook();
+
+        phoneBook.addContact(contact1);
+        phoneBook.addContact(contact2);
+        phoneBook.addContact(contact3);
+
+
+        Map<Integer, Contact> actual = new HashMap<>();
+        actual.put(1, contact1);
+        actual.put(2, contact2);
+        actual.put(3, contact3);
+        Assertions.assertEquals(PhoneBook.allContacts, actual);
     }
 
     @org.junit.jupiter.api.Test
-    public void testNumberOfContacts(){
-        Contact contact1 = new Contact("Николаев Олег", "4539877");
-        Contact contact2 = new Contact("Денисова Кира", "3456622");
-        Contact contact3 = new Contact("Иванов Петр", "3234433");
+    public void testContactsNotNull(){
+        Contact contact1 = new Contact("Oleg", "4539877");
+        Contact contact2 = new Contact("Kira", "3456622");
+        Contact contact3 = new Contact("Pavel", "3234433");
 
-        int expected = Contact.numberOfContacts();
-        int actual = 3;
+        PhoneBook phoneBook = new PhoneBook();
 
-        Assertions.assertEquals(expected, actual);
+        phoneBook.addContact(contact1);
+        phoneBook.addContact(contact2);
+        phoneBook.addContact(contact3);
+
+        Assertions.assertNotNull(phoneBook.getAllContacts());
     }
+
 }

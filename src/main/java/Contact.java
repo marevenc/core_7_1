@@ -5,7 +5,7 @@ public class Contact {
     private String name;
     private String phoneNumber;
 
-    private static Map<Integer, Contact> allContacts = new HashMap<>();
+
     private static int countId = 0;
 
     public int getId() {
@@ -33,34 +33,14 @@ public class Contact {
     }
 
     public Contact (String name, String phoneNumber){
-        if (allContacts == null){
-            allContacts = new HashMap<>();
-        }
+
         this.name = name;
         this.phoneNumber = phoneNumber;
 
-        if (!hasContact()){
+        if (!PhoneBook.hasContact(this)){
             countId++;
             this.id = countId;
-            allContacts.put(id, this);
         }
-    }
-
-    private boolean hasContact(){
-        for (Contact contact : allContacts.values()){
-            if (contact.equals(this) && contact.hashCode() == this.hashCode()){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static List<Contact> getAllContacts(){
-        return new ArrayList<>(allContacts.values());
-    }
-
-    public static int numberOfContacts(){
-        return allContacts.size();
     }
 
     @Override
